@@ -36,7 +36,7 @@ links_to_visit.each do |url|
 	host_urls = []
 	host_row.each do |rls|
 		link = rls.css('.td_cols > a')
-
+		puts link
 		link.each do |x|
 			host_urls << x.attribute('href').value
 		end
