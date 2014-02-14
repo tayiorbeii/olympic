@@ -25,28 +25,15 @@ release_row.each do |rls|
 end
 
 #visit each of the links
-downloads = {}
-event_data = []
+
+events = []
 links_to_visit.each do |url|
 	page = agent.get(url)
-	downloads[:title] = page.parser.xpath('//*[@id="content"]/div[1]/center/h3/a/font').text
-	
-	host_row = page.parser.xpath('//*[@id="download_table"]')
-	
-	host_urls = []
-	host_row.each do |rls|
-		link = rls.css('.td_cols > a')
-		puts link
-		link.each do |x|
-			host_urls << x.attribute('href').value
-		end
+	# events[:titles] = page.parser.xpath('//*[@id="content"]/div[1]/center/h3/a/font/text()').text
 
-	end
-	downloads[:links] = host_urls
-	event_data.push(downloads)
+
+
 end
 
-event_data.each do |x|
-	puts x
-end
 
+puts events[:titles]
