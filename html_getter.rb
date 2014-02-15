@@ -61,8 +61,17 @@ end
 
 
 # Build XML File
-builder = Builder::XmlMarkup.new(:target => $stdout, :indent => 1)
+file = File.new("playlist.xml", "wb")
+builder = Builder::XmlMarkup.new(:target => file, :indent => 1)
+
+builder.poster("Winter Olympics 2014")
+builder.fanart
+builder.info do
+	builder.message
+	builder.thumbnail
+end
 playlist.each do |list|
+
 	builder.item do
 		builder.title(list.title)
 		builder.link do
@@ -72,4 +81,6 @@ playlist.each do |list|
 		end
 	end
 end
+
+
 
