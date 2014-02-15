@@ -35,6 +35,7 @@ link_rows.each do |row|
 	links_to_visit << "http://tv-release.net/#{row_link}/"
 end
 
+# uri = URI.new
 # Visit each of the links
 links_to_visit.each do |link|
 	page = agent.get(link)
@@ -46,7 +47,15 @@ links_to_visit.each do |link|
 	episode_links = []
 	link_rows.each do |row|
 		row_link = row.css("a")[0]['href']
-		episode_links << "#{row_link}"
+		# Check for supported hosts
+		if ((URI.parse(row_link).host == ("rapidgator.net") || 
+			URI.parse(row_link).host == ("ul.to") || 
+			URI.parse(row_link).host == ("hugefiles.net") || 
+			URI.parse(row_link).host == ("bayfiles.net") || 
+			URI.parse(row_link).host == ("bitshare.com")))
+			episode_links << "#{row_link}"
+		end
+
 	end
 
 	# Create episode object
